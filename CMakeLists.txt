@@ -261,6 +261,7 @@ endforeach()
 ################################# Build MaCh3 ##################################
 
 # Build components
+add_subdirectory(api)
 add_subdirectory(Manager)
 add_subdirectory(Parameters)
 add_subdirectory(Splines)
@@ -268,6 +269,7 @@ add_subdirectory(Samples)
 add_subdirectory(Fitters)
 add_subdirectory(Diagnostics)
 add_subdirectory(Plotting)
+add_subdirectory(cli)
 if (MaCh3_PYTHON_ENABLED)
   set(CMAKE_INSTALL_RPATH "$ORIGIN/../lib")
   add_subdirectory(python)
@@ -276,7 +278,7 @@ endif()
 #This is to export the target properties of MaCh3
 #Anything that links to "MaCh3" will get all of these target properties
 add_library(MaCh3 INTERFACE)
-target_link_libraries(MaCh3 INTERFACE Fitters Samples Parameters Splines Manager MaCh3CompilerOptions MaCh3GPUCompilerOptions Plotting)
+target_link_libraries(MaCh3 INTERFACE api Fitters Samples Parameters Splines Manager MaCh3CompilerOptions MaCh3GPUCompilerOptions Plotting)
 set_target_properties(MaCh3 PROPERTIES EXPORT_NAME All)
 
 install(TARGETS MaCh3
